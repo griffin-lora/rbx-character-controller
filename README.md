@@ -5,6 +5,7 @@
 ## Example
 ```ts
 import { CharacterController, State } from "rbx-character-controller"
+import { UserInputService } from "rbx-services"
 
 const characterController = new CharacterController(character)
 
