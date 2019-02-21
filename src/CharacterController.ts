@@ -4,14 +4,14 @@ import { Players } from "rbx-services"
 const player = Players.LocalPlayer as Player
 const playerScripts = player.WaitForChild("PlayerScripts") as PlayerScripts
 
-export { State } from "./StateController"
-
 interface ControlModule {
 
     Enable: (controlModule: ControlModule) => void
     Disable: (controlModule: ControlModule) => void
 
 }
+
+export { State } from "./StateController"
 
 export class CharacterController {
 
@@ -99,9 +99,9 @@ export class CharacterController {
 
     }
 
-    stateChanged(event: Function): RBXScriptConnection {
+    humanoidStateChanged(event: Function): RBXScriptConnection {
 
-        return this.movementController.stateChanged(event)
+        return this.movementController.humanoidStateChanged(event)
 
     }
 

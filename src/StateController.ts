@@ -4,9 +4,9 @@ export class State {
 
     static id = "Default"
 
-    static check() {
+    static init() {
 
-        warn(`Default check method is being used on ${this.id}.`)
+        warn(`Default init method is being used on ${this.id}.`)
 
     }
 
@@ -42,7 +42,7 @@ export class StateController {
 
     addState(state: typeof State) {
         
-        state.check()
+        state.init()
         this.states[state.id] = state
 
     }

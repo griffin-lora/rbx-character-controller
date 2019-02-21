@@ -2,7 +2,7 @@
 
 # NOTE: The is currently a bug that occasionally causes ControlModule to be active. In the meantime you should disable ControlModule.
 
-# Example
+## Example
 ```ts
 import { CharacterController, State } from "rbx-character-controller"
 
@@ -14,7 +14,7 @@ class None extends State {
 
     static id = "None"
 
-    static check() {
+    static init() {
         
         
         
@@ -39,7 +39,7 @@ class Jump extends State {
 
     static id = "Jump"
 
-    static check() {
+    static init() {
         
         UserInputService.InputBegan.Connect(input => {
 
@@ -85,4 +85,84 @@ class Jump extends State {
 states.push(Jump)
 
 characterController.addStates(states)
+```
+
+## Documentation
+
+### CharacterController
+```ts
+constructor(character: Model)
+// Creates a new CharacterController. Expressed as new CharacterController(character).
+
+getVelocity(): Vector3
+// Gets the character velocity.
+
+setVelocity(velocity: Vector3)
+// Sets the character velocity.
+
+getMobile(): boolean
+// Returns true if the character is mobile.
+
+setMobile(mobile: boolean)
+// Sets the mobile state.
+
+bounce(height: number)
+// Bounces the character to the specified height
+
+move(direction: Vector3)
+// Moves the character in the specified direction.
+
+isGrounded(): boolean
+// Returns true if the character is grounded.
+
+isMoving(): boolean
+// Returns true if the character is moving
+
+humanoidStateChanged(event: Function): RBXScriptConnection
+// Runs event when the humanoid state changes.
+
+landed(event: Function): RBXScriptConnection
+// Runs when the character lands.
+
+getPrimaryPart(): BasePart
+// Gets the primary part of the character.
+
+getHumanoid(): Humanoid
+// Gets the humanoid of the character.
+
+addState(state: typeof State)
+// Adds a state to the character.
+
+addStates(states: Array<typeof State>)
+// Adds states to the character.
+
+setState(stateName: string)
+// Sets the character state.
+
+getState()
+// Gets the character state.
+
+character: Model
+// The character model.
+
+movementController: MovementController
+// The movementController.
+
+stateController: StateController
+// The stateController.
+```
+
+### State
+```ts
+static id: string
+// The id of the state.
+
+static init()
+// Called when the state initializes.
+
+static start()
+// Called when the state starts.
+
+static stop()
+// Called when the state stops.
 ```

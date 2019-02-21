@@ -72,7 +72,7 @@ export class MovementController {
 
     }
 
-    stateChanged(event: Function): RBXScriptConnection {
+    humanoidStateChanged(event: Function): RBXScriptConnection {
 
         if (this.humanoid) {
 
@@ -96,7 +96,7 @@ export class MovementController {
 
     landed(event: Function): RBXScriptConnection {
 
-        return this.stateChanged((humanoidState: Enum.HumanoidStateType) => {
+        return this.humanoidStateChanged((humanoidState: Enum.HumanoidStateType) => {
 
             if (humanoidState === Enum.HumanoidStateType.Landed) {
 
