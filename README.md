@@ -10,6 +10,31 @@ const characterController = new CharacterController(character)
 
 const states = new Array<typeof State>()
 
+class None extends State {
+
+    static id = "None"
+
+    static check() {
+        
+        
+        
+    }
+
+    static start() {
+
+        characterController.setVelocity(new Vector3())
+
+    }
+
+    static stop() {
+        
+
+        
+    }
+
+}
+states.push(None)
+
 class Jump extends State {
 
     static id = "Jump"
