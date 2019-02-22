@@ -1,6 +1,7 @@
 import { StateController, State } from "./StateController"
 import { MovementController } from "./MovementController"
 import { Players } from "rbx-services"
+import { AnimationController } from "./AnimationController";
 const player = Players.LocalPlayer as Player
 const playerScripts = player.WaitForChild("PlayerScripts") as PlayerScripts
 
@@ -42,8 +43,9 @@ export class CharacterController {
 
         player.Character = character
         this.character = character
-        this.movementController = new MovementController(character)
-        this.stateController = new StateController()
+        this.movementController = new MovementController(this)
+        this.stateController = new StateController(this)
+        this.animationController = new AnimationController(this)
 
     }
 
@@ -149,10 +151,25 @@ export class CharacterController {
 
     }
 
+    // AnimationController
+
+    getAnimatable() {
+
+        return this.animationController.getAnimatable()
+
+    }
+
+    setAnimatable(animatable: boolean) {
+
+        this.animationController.setAnimatable(animatable)
+
+    }
+
     // Properties
 
     character: Model
-    movementController: MovementController
-    stateController: StateController
+    private movementController: MovementController
+    private stateController: StateController
+    private animationController: AnimationController
 
 }

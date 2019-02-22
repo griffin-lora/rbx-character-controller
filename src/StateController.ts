@@ -1,22 +1,22 @@
-import { CharacterController } from "CharacterController"
+import { CharacterController } from "./CharacterController"
 
 export class State {
 
     static id = "Default"
 
-    static init() {
+    static init(characterController: CharacterController) {
 
         warn(`Default init method is being used on ${this.id}.`)
 
     }
 
-    static start() {
+    static start(characterController: CharacterController) {
 
         warn(`Default start method is being used on ${this.id}.`)
 
     }
 
-    static stop() {
+    static stop(characterController: CharacterController) {
 
         warn(`Default stop method is being used on ${this.id}.`)
 
@@ -32,17 +32,17 @@ interface States {
 
 export class StateController {
 
-    constructor() {
+    constructor(characterController: CharacterController) {
 
+        this.characterController = characterController
         this.states = {} as States
-
         this.stateObject = State
 
     }
 
     addState(state: typeof State) {
         
-        state.init()
+        state.init(this.characterController)
         this.states[state.id] = state
 
     }
@@ -65,12 +65,12 @@ export class StateController {
             const previousState = this.stateObject
             if (previousState) {
                 
-                previousState.stop()
+                previousState.stop(this.characterController)
 
             }
 
             this.stateObject = state
-            state.start()
+            state.start(this.characterController)
 
         } else {
 
@@ -85,9 +85,9 @@ export class StateController {
         return this.stateObject.id
 
     }
-
-    states: States
-
-    stateObject: typeof State
+    
+    private characterController: CharacterController
+    private states: States
+    private stateObject: typeof State
 
 }

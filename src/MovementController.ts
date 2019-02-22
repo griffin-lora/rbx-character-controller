@@ -1,8 +1,13 @@
+import { CharacterController } from "./CharacterController"
 import { RunService } from "rbx-services"
 
 export class MovementController {
 
-    constructor(character: Model) {
+    constructor(characterController: CharacterController) {
+        
+        this.characterController = characterController
+
+        const character = characterController.character
         
         const primaryPart = character.PrimaryPart
 
@@ -111,6 +116,7 @@ export class MovementController {
     velocity = new Vector3()
     mobile = true
 
+    private characterController: CharacterController
     primaryPart: BasePart
     humanoid: Humanoid | undefined
 
