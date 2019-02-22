@@ -1,5 +1,7 @@
 # rbx-character-controller
 
+A character controller for roblox-ts.
+
 # NOTE: The is currently a bug that occasionally causes ControlModule to be active. In the meantime you should disable ControlModule.
 
 ## Example
