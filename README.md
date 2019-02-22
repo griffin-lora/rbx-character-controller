@@ -4,10 +4,10 @@
 
 ## Example
 ```ts
-import { CharacterController, State } from "rbx-character-controller"
-import { UserInputService } from "rbx-services"
+import { CharacterController, State, InputController } from "rbx-character-controller"
+import { UserInputService, Players } from "rbx-services"
 
-const characterController = new CharacterController(character)
+const player = Players.LocalPlayer as Player
 
 const states = new Array<typeof State>()
 
@@ -15,19 +15,19 @@ class None extends State {
 
     static id = "None"
 
-    static init() {
+    static init(characterController: CharacterController) {
         
         
         
     }
 
-    static start() {
+    static start(characterController: CharacterController) {
 
         characterController.setVelocity(new Vector3())
 
     }
 
-    static stop() {
+    static stop(characterController: CharacterController) {
         
 
         
@@ -40,17 +40,13 @@ class Jump extends State {
 
     static id = "Jump"
 
-    static init() {
+    static init(characterController: CharacterController) {
         
-        UserInputService.InputBegan.Connect(input => {
+        InputController.jumped(() => {
+            
+            if (characterController.isGrounded()) {
 
-            if (input.KeyCode === Enum.KeyCode.Space) {
-
-                if (characterController.isGrounded()) {
-
-                    characterController.setState("Jump")
-    
-                }
+                characterController.setState("Jump")
 
             }
 
@@ -58,7 +54,7 @@ class Jump extends State {
 
     }
 
-    static start() {
+    static start(characterController: CharacterController) {
 
         characterController.bounce(50)
 
@@ -76,7 +72,7 @@ class Jump extends State {
 
     }
 
-    static stop() {
+    static stop(characterController: CharacterController) {
 
         
 
@@ -85,7 +81,14 @@ class Jump extends State {
 }
 states.push(Jump)
 
-characterController.addStates(states)
+player.CharacterAdded.Connect(character => {
+    
+    character.PrimaryPart = character.WaitForChild("HumanoidRootPart")
+    const characterController = new CharacterController(character)
+    characterController.addStates(states)
+    characterController.setState("None")
+
+})
 ```
 
 ## Documentation
