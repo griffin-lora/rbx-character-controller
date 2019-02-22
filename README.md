@@ -143,17 +143,20 @@ addStates(states: Array<typeof State>)
 setState(stateName: string)
 // Sets the character state.
 
-getState()
+getState(): State
 // Gets the character state.
+
+loadAnimation(animationId: number): Animation
+// Loads the specified animation
+
+getAnimatable(): boolean
+// Gets the animatable state.
+
+setAnimatable(animatable: boolean)
+// Sets the animatable state.
 
 character: Model
 // The character model.
-
-movementController: MovementController
-// The movementController.
-
-stateController: StateController
-// The stateController.
 ```
 
 ### State
@@ -169,4 +172,13 @@ static start()
 
 static stop()
 // Called when the state stops.
+```
+
+### Animation
+```ts
+play()
+// Plays the animation.
+
+stop()
+// Stops the animation.
 ```

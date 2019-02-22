@@ -14,6 +14,8 @@ interface ControlModule {
 
 export { State } from "./StateController"
 
+export { Animation } from "./AnimationController"
+
 export class CharacterController {
 
     constructor(character: Model) {
@@ -152,6 +154,12 @@ export class CharacterController {
     }
 
     // AnimationController
+
+    loadAnimation(animationId: number) {
+
+        return this.animationController.loadAnimation(animationId)
+
+    }
 
     getAnimatable() {
 

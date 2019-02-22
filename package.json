@@ -1,6 +1,6 @@
 {
   "name": "rbx-character-controller",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "A character controller for roblox-ts.",
   "main": "out/init.lua",
   "typings": "out/index.d.ts",
